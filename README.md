@@ -35,6 +35,11 @@ This system is suitable for:
 - Admins to identify skill gaps and assign appropriate training.
 - Faculty members to assess their skills and access relevant materials.
 
+## Demo Video
+Watch the project demo on YouTube:  
+[Faculty Skill Assessment and Training Portal – YouTube Demo](https://youtu.be/DEfKzQqJAyE?feature=shared)
+
+
 ## Developed By
 D Anitha  
 Computer Science and Engineering 
