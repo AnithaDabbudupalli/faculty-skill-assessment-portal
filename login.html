@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Signup - Faculty Portal</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #34495E;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #3498DB;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #2980B9;
+        }
+
+        .switch-option {
+            margin-top: 15px;
+        }
+
+        .switch-option a {
+            text-decoration: none;
+            color: #3498DB;
+            font-weight: bold;
+        }
+
+        .switch-option a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Faculty Portal</h2>
+        
+        <!-- Login Form -->
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+
+        <div class="switch-option">
+            <p>Don't have an account? <a href="#" onclick="toggleForms()">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Form (Initially hidden) -->
+    <div class="container" id="signup-container" style="display:none;">
+        <h2>Create an Account</h2>
+        
+        <form action="signup.php" method="POST">
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" name="fullname" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-role">Role</label>
+                <select id="signup-role" name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="faculty">Faculty</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="signup-department">Department</label>
+                <select id="signup-department" name="department" required>
+                    <option value="">Select Department</option>
+                    <option value="CSE">Computer Science and Engineering</option>
+                    <option value="EEE">Electrical and Electronics Engineering</option>
+                    <option value="ECE">Electronics and Communication Engineering</option>
+                    <option value="CE">Civil Engineering</option>
+                    <option value="ME">Mechanical Engineering</option>
+                    <option value="CHE">Chemical Engineering</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form>
+
+        <div class="switch-option">
+            <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Faculty Skill Assessment & Training System</p>
+    </footer>
+
+    <script>
+        function toggleForms() {
+            const loginForm = document.querySelector('form[action="login.php"]');
+            const signupForm = document.getElementById('signup-container');
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+                signupForm.style.display = "none";
+            } else {
+                loginForm.style.display = "none";
+                signupForm.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
+

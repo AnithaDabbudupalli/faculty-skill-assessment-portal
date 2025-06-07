@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Assessments</title>
+  <script>
+    function calculateScore(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const fields = ['technical-1', 'teaching-1', 'research-1', 'interpersonal-1'];
+      let totalScore = 0;
+      let maxScore = fields.length * 5; // Maximum score is 5 points per category
+
+      fields.forEach(field => {
+        const selected = document.querySelector(`input[name="${field}"]:checked`);
+        if (selected) {
+          totalScore += parseInt(selected.value, 10);
+        }
+      });
+
+      const percentage = (totalScore / maxScore) * 100;
+      document.getElementById('result').textContent = `Your score: ${percentage.toFixed(2)}%`;
+    }
+  </script>
+</head>
+<body>
+  <h1>Assessments</h1>
+  <p>This is the detailed page for the Assessments section.</p>
+  
+  <h2>Custom Assessment for BTech Professors</h2>
+  <form id="assessment-form" onsubmit="calculateScore(event)">
+    <fieldset>
+      <legend>Technical Knowledge</legend>
+      <label for="technical-1">Rate your expertise in core BTech subjects (e.g., Data Structures, Thermodynamics):</label><br>
+      <input type="radio" id="technical-1" name="technical-1" value="1"> 1
+      <input type="radio" id="technical-1" name="technical-1" value="2"> 2
+      <input type="radio" id="technical-1" name="technical-1" value="3"> 3
+      <input type="radio" id="technical-1" name="technical-1" value="4"> 4
+      <input type="radio" id="technical-1" name="technical-1" value="5"> 5<br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend>Teaching Methodology</legend>
+      <label for="teaching-1">How effective are your lesson plans and delivery methods?</label><br>
+      <input type="radio" id="teaching-1" name="teaching-1" value="1"> 1
+      <input type="radio" id="teaching-1" name="teaching-1" value="2"> 2
+      <input type="radio" id="teaching-1" name="teaching-1" value="3"> 3
+      <input type="radio" id="teaching-1" name="teaching-1" value="4"> 4
+      <input type="radio" id="teaching-1" name="teaching-1" value="5"> 5<br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend>Research Capabilities</legend>
+      <label for="research-1">Rate your ability to publish papers in reputable journals:</label><br>
+      <input type="radio" id="research-1" name="research-1" value="1"> 1
+      <input type="radio" id="research-1" name="research-1" value="2"> 2
+      <input type="radio" id="research-1" name="research-1" value="3"> 3
+      <input type="radio" id="research-1" name="research-1" value="4"> 4
+      <input type="radio" id="research-1" name="research-1" value="5"> 5<br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend>Interpersonal Skills</legend>
+      <label for="interpersonal-1">How well do you engage and mentor students?</label><br>
+      <input type="radio" id="interpersonal-1" name="interpersonal-1" value="1"> 1
+      <input type="radio" id="interpersonal-1" name="interpersonal-1" value="2"> 2
+      <input type="radio" id="interpersonal-1" name="interpersonal-1" value="3"> 3
+      <input type="radio" id="interpersonal-1" name="interpersonal-1" value="4"> 4
+      <input type="radio" id="interpersonal-1" name="interpersonal-1" value="5"> 5<br><br>
+    </fieldset>
+
+    <button type="submit">Submit Assessment</button>
+  </form>
+
+  <p id="result"></p>
+  
+  <a href="hello.html">Go Back to Main Page</a>
+</body>
+</html>

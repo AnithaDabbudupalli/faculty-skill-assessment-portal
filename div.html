@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSE Faculty Knowledge Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0047ab;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      color: #0047ab;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    button {
+      background-color: #0047ab;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003580;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #0047ab;
+    }
+  </style>
+  <script>
+    function calculatePercentage(event) {
+      event.preventDefault(); // Prevent the form from reloading the page
+
+      const questions = document.querySelectorAll('.question');
+      let score = 0;
+
+      questions.forEach((question) => {
+        const selected = question.querySelector('input[type="radio"]:checked');
+        if (selected && selected.value === "correct") {
+          score++;
+        }
+      });
+
+      const percentage = (score / questions.length) * 100;
+      const resultElement = document.getElementById('result');
+
+      if (resultElement) {
+        resultElement.textContent = `Your score: ${percentage.toFixed(2)}%`;
+      }
+
+      // Here, you can implement logic to save the percentage to the user's profile
+      // Example: send the percentage to a server using fetch or XMLHttpRequest
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>CSE Faculty Knowledge Test</h1>
+  </header>
+  <div class="container">
+    <form id="knowledge-test" onsubmit="calculatePercentage(event)">
+      <div class="question">
+        <p>1. What is the time complexity of binary search in the worst case?</p>
+        <label><input type="radio" name="q1" value="correct"> O(log n)</label>
+        <label><input type="radio" name="q1" value="wrong"> O(n)</label>
+        <label><input type="radio" name="q1" value="wrong"> O(n^2)</label>
+      </div>
+
+      <div class="question">
+        <p>2. Which data structure is used to implement a stack?</p>
+        <label><input type="radio" name="q2" value="correct"> Array</label>
+        <label><input type="radio" name="q2" value="wrong"> Binary Tree</label>
+        <label><input type="radio" name="q2" value="wrong"> Graph</label>
+      </div>
+
+      <div class="question">
+        <p>3. What is the primary purpose of a database index?</p>
+        <label><input type="radio" name="q3" value="correct"> To speed up queries</label>
+        <label><input type="radio" name="q3" value="wrong"> To increase storage</label>
+        <label><input type="radio" name="q3" value="wrong"> To back up data</label>
+      </div>
+
+      <div class="question">
+        <p>4. Which protocol is used for secure communication over the internet?</p>
+        <label><input type="radio" name="q4" value="correct"> HTTPS</label>
+        <label><input type="radio" name="q4" value="wrong"> HTTP</label>
+        <label><input type="radio" name="q4" value="wrong"> FTP</label>
+      </div>
+
+      <div class="question">
+        <p>5. What does DNS stand for?</p>
+        <label><input type="radio" name="q5" value="correct"> Domain Name System</label>
+        <label><input type="radio" name="q5" value="wrong"> Data Network Service</label>
+        <label><input type="radio" name="q5" value="wrong"> Digital Node Service</label>
+      </div>
+
+      <div class="question">
+        <p>6. Which sorting algorithm is the fastest in the average case for large datasets?</p>
+        <label><input type="radio" name="q6" value="correct"> Quick Sort</label>
+        <label><input type="radio" name="q6" value="wrong"> Bubble Sort</label>
+        <label><input type="radio" name="q6" value="wrong"> Selection Sort</label>
+      </div>
+
+      <div class="question">
+        <p>7. What is the primary purpose of a firewall in a computer network?</p>
+        <label><input type="radio" name="q7" value="correct"> To block unauthorized access</label>
+        <label><input type="radio" name="q7" value="wrong"> To encrypt data</label>
+        <label><input type="radio" name="q7" value="wrong"> To increase speed</label>
+      </div>
+
+      <div class="question">
+        <p>8. Which programming language is primarily used for web development?</p>
+        <label><input type="radio" name="q8" value="correct"> JavaScript</label>
+        <label><input type="radio" name="q8" value="wrong"> C</label>
+        <label><input type="radio" name="q8" value="wrong"> Assembly</label>
+      </div>
+
+      <div class="question">
+        <p>9. What is the output of 2 + "2" in JavaScript?</p>
+        <label><input type="radio" name="q9" value="correct"> "22"</label>
+        <label><input type="radio" name="q9" value="wrong"> 4</label>
+        <label><input type="radio" name="q9" value="wrong"> NaN</label>
+      </div>
+
+      <div class="question">
+        <p>10. Which OSI layer is responsible for routing?</p>
+        <label><input type="radio" name="q10" value="correct"> Network Layer</label>
+        <label><input type="radio" name="q10" value="wrong"> Transport Layer</label>
+        <label><input type="radio" name="q10" value="wrong"> Data Link Layer</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+</body>
+</html>

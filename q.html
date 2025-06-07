@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Skills Test - CSE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h2, h1 {
+            text-align: center;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], input[type="password"], input[type="radio"] {
+            margin: 10px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1DA1F2; /* Updated to blue */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #1596d4; /* Slightly darker blue for hover effect */
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .login-section {
+            display: block;
+        }
+
+        .test-section {
+            display: none;
+        }
+
+        .question label {
+            font-weight: bold;
+        }
+
+        .results {
+            background-color: #dff0d8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .results p {
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1DA1F2;
+            text-decoration: none;
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login-section" id="login-section">
+            <h2>Please Log In</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="submit">Log In</button>
+            </form>
+            <p id="login-error" class="error-message"></p>
+        </div>
+
+        <!-- Test Section -->
+        <div class="test-section" id="test-section">
+            <h1>Faculty Skills Test - CSE</h1>
+            <form id="test-form">
+                <div class="question">
+                    <label for="q1">1. What is the time complexity of binary search?</label><br>
+                    <input type="radio" name="q1" value="A"> A) O(n)<br>
+                    <input type="radio" name="q1" value="B"> B) O(log n)<br>
+                    <input type="radio" name="q1" value="C"> C) O(n log n)<br>
+                    <input type="radio" name="q1" value="D"> D) O(1)<br>
+                </div>
+
+                <div class="question">
+                    <label for="q2">2. What is the main function of an Operating System?</label><br>
+                    <input type="radio" name="q2" value="A"> A) Memory management<br>
+                    <input type="radio" name="q2" value="B"> B) CPU scheduling<br>
+                    <input type="radio" name="q2" value="C"> C) Process synchronization<br>
+                    <input type="radio" name="q2" value="D"> D) All of the above<br>
+                </div>
+
+                <div class="question">
+                    <label for="q3">3. Which of the following is not a type of database model?</label><br>
+                    <input type="radio" name="q3" value="A"> A) Relational<br>
+                    <input type="radio" name="q3" value="B"> B) Network<br>
+                    <input type="radio" name="q3" value="C"> C) Hierarchical<br>
+                    <input type="radio" name="q3" value="D"> D) Linear<br>
+                </div>
+
+                <div class="question">
+                    <label for="q4">4. Which algorithm is used to find the shortest path in a weighted graph?</label><br>
+                    <input type="radio" name="q4" value="A"> A) Depth First Search (DFS)<br>
+                    <input type="radio" name="q4" value="B"> B) Dijkstra’s Algorithm<br>
+                    <input type="radio" name="q4" value="C"> C) Kruskal’s Algorithm<br>
+                    <input type="radio" name="q4" value="D"> D) Bellman-Ford Algorithm<br>
+                </div>
+
+                <div class="question">
+                    <label for="q5">5. What does SQL stand for?</label><br>
+                    <input type="radio" name="q5" value="A"> A) Structured Query Language<br>
+                    <input type="radio" name="q5" value="B"> B) Sequential Query Language<br>
+                    <input type="radio" name="q5" value="C"> C) Simple Query Language<br>
+                    <input type="radio" name="q5" value="D"> D) None of the above<br>
+                </div>
+
+                <button type="submit">Submit Test</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results" id="results-section" style="display: none;">
+            <h2>Test Results</h2>
+            <p id="score"></p>
+            <p><strong>Your Answers:</strong></p>
+            <pre id="user-answers"></pre>
+        </div>
+
+        <!-- Back Link -->
+        <a href="hello.html" class="back-link">Go Back to Main Page</a>
+    </div>
+
+    <script>
+        // Simulating a simple login check
+        const correctUsername = "faculty";
+        const correctPassword = "password123";
+
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            if (username === correctUsername && password === correctPassword) {
+                // Hide login section and show the test
+                document.getElementById("login-section").style.display = "none";
+                document.getElementById("test-section").style.display = "block";
+            } else {
+                // Display error message if login fails
+                document.getElementById("login-error").textContent = "Invalid username or password!";
+            }
+        });
+
+        document.getElementById("test-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            let userAnswers = "";
+            let score = 0;
+            const correctAnswers = {
+                q1: "B",
+                q2: "D",
+                q3: "D",
+                q4: "B",
+                q5: "A"
+            };
+
+            // Evaluate answers
+            formData.forEach((value, key) => {
+                userAnswers += key + ": " + value + "\n";
+                if (correctAnswers[key] === value) {
+                    score++;
+                }
+            });
+
+            // Show results
+            document.getElementById("test-section").style.display = "none";
+            document.getElementById("results-section").style.display = "block";
+            document.getElementById("score").textContent = `Your Score: ${score} out of 5`;
+            document.getElementById("user-answers").textContent = userAnswers;
+        });
+    </script>
+</body>
+</html>
+
+
